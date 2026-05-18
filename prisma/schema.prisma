@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User{
+  Id String @id @default(uuid())
+  email String
+  senha String
+  paciente Paciente?
+  medico Medico?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Medico{
+  Id String @id @default(uuid())
+  nome String
+  escola String
+  anoExperiencia String
+  especialidadeId String
+  estadoId String
+  userId String @unique
+  vaga Vaga[]
+  especialidade Especialidade @relation(fields:[especialidadeId], references:[Id])
+  user User @relation(fields:[userId], references:[Id])
+  estado Estado @relation(fields:[estadoId], references:[Id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("medicos")
+}
+
+model Paciente{
+  Id String @id @default(uuid())
+  nome String
+  NIF String
+  SNS String?
+  dataNascimento DateTime
+  sexo String
+  phone Int
+  morada String
+  userId String @unique
+  consulta Consulta[]
+  user User @relation(fields:[userId], references:[Id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("pacientes")
+}
+
+model Especialidade{
+  Id String @id @default(uuid())
+  especialidade String
+  descricao String
+  img String?
+  medico Medico[]
+  consulta Consulta[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+
+  @@map("especialidades")
+}
+
+model Consulta{
+  Id String @id @default(uuid())
+  pacienteId String
+  especialidadeId String
+  data DateTime
+  hora DateTime
+  estadoId String
+  estado Estado @relation(fields:[estadoId], references:[Id])
+  especialidade Especialidade @relation(fields:[especialidadeId], references:[Id])
+  paciente Paciente @relation(fields:[pacienteId], references:[Id])
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("consultas")
+}
+
+
+model Estado{
+  Id String @id @default(uuid())
+  estado String
+  consulta Consulta[]
+  medico Medico[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+
+  @@map("estados")
+}
+
+model Vaga{
+  Id String @id @default(uuid())
+  data DateTime
+  medicoId String
+  medico Medico @relation(fields:[medicoId], references:[Id])
+
+  @@map("vagas")
+}
