@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { EspecialidadeController } from "./especilaidade.Controller.js";
-const especialRouter = Router()
+const especialidadeRota = Router()
 const especialidadeController = new EspecialidadeController()
 
 
-especialRouter.post('/create',especialidadeController.create)
-especialRouter.get('/',especialidadeController.get)
-especialRouter.put('/update',especialidadeController.update)
-especialRouter.delete('/delete',especialidadeController.delete)
+especialidadeRota.post('/create',especialidadeController.create)
+especialidadeRota.get('/',especialidadeController.get)
+especialidadeRota.put('/update',especialidadeController.update)
+especialidadeRota.delete('/delete',especialidadeController.delete)
 
 
-export {especialRouter}
+export {especialidadeRota}

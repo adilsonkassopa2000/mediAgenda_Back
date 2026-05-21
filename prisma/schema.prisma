@@ -111,8 +111,11 @@ model Estado{
 model Vaga{
   Id String @id @default(uuid())
   data DateTime
+  hora DateTime
   medicoId String
   medico Medico @relation(fields:[medicoId], references:[Id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("vagas")
 }
