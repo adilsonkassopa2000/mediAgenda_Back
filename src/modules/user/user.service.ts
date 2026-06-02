@@ -52,6 +52,6 @@ export class UserService{
         if(!senhaBd)
             throw new Error('Senha incorreta')
 
-        return 'login realizado com sucesso'
+        return user
     }
 }

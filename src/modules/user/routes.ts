@@ -6,6 +6,6 @@ const userController = new UserController();
 
 userRota.post('/create', userController.create);
 userRota.post('/login', userController.login);
-userRota.get('/:id', userController.get);
+userRota.get('/', userController.get);
 
 export { userRota };

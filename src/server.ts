@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors"
 import { userRota } from "./modules/user/routes.js";
 import { consultaRota } from "./modules/consulta/routes.js";
 import { medicoRota } from "./modules/medico/routes.js";
@@ -12,9 +13,17 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const corsOption = {
+    origin: '*',
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    exposedHeaders: 'Content-Length,Content-Type',
+    credentials: false,
+    optionsSuccessStatus: 200
+}
 
 
 app.use(express.json());
+app.use(cors(corsOption))
 app.use('/user', userRota);
 app.use('/medico',medicoRota)
 app.use('/paciente',pacienteRota)
