@@ -1,22 +1,28 @@
 export type medico = {
     nome: string,
+    crm?: string,
     escola: string,
     anoExperiencia: string,
     especialidadeId:string,
     estadoId:string,
     userId:string,
-    createdAt:Date,
-    updatedAt:Date
+    createdAt?:Date,
+    updatedAt?:Date
 }
 
 export type medicoSave = {
     Id:string,
     nome: string,
+    crm?: string,
     escola: string,
     anoExperiencia: string,
-    especialidadeId:string
+    especialidadeId:string,
     estadoId:string,
     userId:string,
+    especialidade?: any,
+    estado?: any,
+    totalAppointments: number,
+    todayAppointments: number,
     createdAt:Date,
     updatedAt:Date
 }

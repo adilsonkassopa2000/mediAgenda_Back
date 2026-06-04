@@ -9,10 +9,10 @@ export class MedicoService{
             throw new Error("dados não passados")
 
         const medico = (await this.imedicoRepository.get()).
-        find(item => item.nome.trim().toUpperCase() === data.nome.trim().toUpperCase())
+        find(item => data.crm && item.crm?.trim().toUpperCase() === data.crm.trim().toUpperCase())
 
-        if(medico)// verificando se já existe um medico com o mesmo nome
-            throw new Error('medico já registrado')
+        if(medico)
+            throw new Error('CRM já registrado')
 
         return await this.imedicoRepository.create(data)
     }
@@ -32,7 +32,7 @@ export class MedicoService{
 
         const idsave = (await this.imedicoRepository.get()).find(item => item.Id.trim() === id.trim())
 
-        if (!id)
+        if (!idsave)
             throw new Error('nenhum dado encontrado para este Id')
 
         return await this.imedicoRepository.update(id,data)
@@ -44,7 +44,7 @@ export class MedicoService{
 
         const idsave = (await this.imedicoRepository.get()).find(item => item.Id.trim() === id.trim())
 
-        if (!id)
+        if (!idsave)
             throw new Error('nenhum dado encontrado para este Id')
 
         return await this.imedicoRepository.delete(id)

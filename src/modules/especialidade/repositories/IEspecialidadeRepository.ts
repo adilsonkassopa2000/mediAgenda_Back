@@ -3,6 +3,7 @@ export type especialidadeSave = {
     especialidade: string,
     descricao: string,
     img: string | null,
+    slots: number,
     createdAt: Date,
     updatedAt: Date
 }
@@ -10,7 +11,8 @@ export type especialidadeSave = {
 export type especialidade = {
     especialidade: string,
     descricao: string,
-    img: string | null
+    img?: string | null,
+    slots?: number
 }
 
 export interface IEspecialidadeRepository{

@@ -10,7 +10,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -30,6 +30,7 @@ model User{
 model Medico{
   Id String @id @default(uuid())
   nome String
+  crm String?
   escola String
   anoExperiencia String
   especialidadeId String
@@ -68,6 +69,7 @@ model Especialidade{
   especialidade String
   descricao String
   img String?
+  slots Int @default(0)
   medico Medico[]
   consulta Consulta[]
   createdAt DateTime @default(now())

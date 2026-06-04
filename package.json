@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx --watch src/server.ts"
+    "dev": "tsx --watch src/server.ts",
+    "migrate:sqlite-to-postgres": "py -3 scripts/migrate_sqlite_to_postgres.py"
   },
   "keywords": [],
   "author": "",

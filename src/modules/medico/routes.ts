@@ -9,6 +9,4 @@ medicoRota.get('/',medicoController.get)
 medicoRota.put('/update',medicoController.update)
 medicoRota.delete('/delete',medicoController.delete)
 
-
-
 export {medicoRota}
