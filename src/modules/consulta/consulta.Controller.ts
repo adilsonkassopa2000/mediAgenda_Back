@@ -11,17 +11,17 @@ export class ConsultaController{
                 const {
                     pacienteId,
                     especialidadeId,
-                    data,
-                    hora,
+                    medicoId,
+                    vagaId,
                     estadoId
                 } = request.body
-    
+		    
                 return response.status(200).json(
                     await consultaFactory.factory().execute({
                         pacienteId,
                         especialidadeId,
-                        data,
-                        hora,
+                        medicoId,
+                        vagaId,
                         estadoId
                     })
                 )
@@ -53,21 +53,12 @@ export class ConsultaController{
             try{
                 const {
                     id,
-                    pacienteId,
-                    especialidadeId,
-                    data,
-                    hora,
-                    estadoId
+                    data
                 } = request.body
-    
+		console.log('Id:',id)
+		console.log('data:',data)    
                 return response.status(200).json(
-                    await consultaFactory.factory().update(id, {
-                        pacienteId,
-                        especialidadeId,
-                        data,
-                        hora,
-                        estadoId
-                    })
+                    await consultaFactory.factory().update(id,data)
                 )
     
             }catch(err:any){

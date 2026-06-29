@@ -8,7 +8,7 @@ export class ConsultaService{
     async execute(data:consulta){
         if(!data)
             throw new Error('os dados não foram passados')
-
+        
         return await this.iconsultaRepository.create(data)
     }
 
@@ -22,6 +22,7 @@ export class ConsultaService{
     }
 
     async update(id:string,data:consulta){
+	console.log('serviceData:',data)
         if(!id || !data)
             throw new Error('nenhum dado passsado')
 

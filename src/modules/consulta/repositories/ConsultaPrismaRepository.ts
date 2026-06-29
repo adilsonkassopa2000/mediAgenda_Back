@@ -7,6 +7,7 @@ import { consulta, consultaSave, IConsultaRepository } from "./IConsultaReposito
 
 export class  ConsultaPrismaRepository implements IConsultaRepository{
     async upddte(id: string, data: consulta): Promise<consultaSave> {
+	console.log('prisma:',data)
         return await prismaClient.consulta.update({
             where:{
                 Id:id
@@ -18,10 +19,12 @@ export class  ConsultaPrismaRepository implements IConsultaRepository{
     }
 
     async create(data: consulta): Promise<consultaSave> {
+	
         return await prismaClient.consulta.create({
             data:data
         })
     }
+
     async get(): Promise<consultaSave[]> {
         return await prismaClient.consulta.findMany()
     }

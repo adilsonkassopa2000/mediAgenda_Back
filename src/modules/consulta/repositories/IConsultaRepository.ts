@@ -2,8 +2,8 @@ export type consultaSave = {
     Id: string
     pacienteId: string
     especialidadeId: string
-    data: Date
-    hora: Date
+    medicoId: string
+    vagaId: string
     estadoId: string
     createdAt: Date
     updatedAt: Date
@@ -12,8 +12,8 @@ export type consultaSave = {
 export type consulta = {
     pacienteId: string
     especialidadeId: string
-    data: Date
-    hora: Date
+    medicoId: string
+    vagaId: string
     estadoId: string
 }
 
