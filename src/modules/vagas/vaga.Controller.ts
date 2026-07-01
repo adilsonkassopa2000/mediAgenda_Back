@@ -9,14 +9,16 @@ export class VagaController{
             const {
                 data,
                 hora,
-                medicoId
+                medicoId,
+		estadoId
             } = request.body
 
             return response.status(200).json(
                 await vagaFactory.factory().execute({
                     data,
                     hora,
-                    medicoId
+                    medicoId,
+		    estadoId
                 })
             )
 
@@ -47,17 +49,11 @@ export class VagaController{
         try{
             const {
                 id,
-                data,
-                hora,
-                medicoId
+                data
             } = request.body
 
             return response.status(200).json(
-                await vagaFactory.factory().update(id, {
-                    data,
-                    hora,
-                    medicoId
-                })
+                await vagaFactory.factory().update(id,data)
             )
 
         }catch(err:any){

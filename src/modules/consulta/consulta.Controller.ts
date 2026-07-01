@@ -55,8 +55,7 @@ export class ConsultaController{
                     id,
                     data
                 } = request.body
-		console.log('Id:',id)
-		console.log('data:',data)    
+    
                 return response.status(200).json(
                     await consultaFactory.factory().update(id,data)
                 )

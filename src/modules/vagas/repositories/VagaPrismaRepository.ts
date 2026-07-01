@@ -8,7 +8,21 @@ import { IVagaRepository, vaga, vagaSave } from "./IVagaRepository.js";
 export class VagaPrismaRepository implements IVagaRepository{
     async create(data: vaga): Promise<vagaSave> {
         return await prismaClient.vaga.create({
-            data:data
+            data:{
+			data: data.data,
+			hora: data.hora,
+			
+			medico:{
+				connect:{
+					Id: data.medicoId
+				}
+			},
+			estado:{
+				connect:{
+					Id: data.estadoId
+				}
+			}
+		}
         })
     }
     async get(): Promise<vagaSave[]> {

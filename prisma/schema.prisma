@@ -32,10 +32,13 @@ model Medico{
   nome String
   escola String
   anoExperiencia String
+  CRM Int
+  phone Int
   especialidadeId String
   estadoId String
   userId String @unique
   vaga Vaga[]
+  consulta Consulta[]
   especialidade Especialidade @relation(fields:[especialidadeId], references:[Id])
   user User @relation(fields:[userId], references:[Id])
   estado Estado @relation(fields:[estadoId], references:[Id])
@@ -81,12 +84,14 @@ model Consulta{
   Id String @id @default(uuid())
   pacienteId String
   especialidadeId String
-  data DateTime
-  hora DateTime
   estadoId String
+  medicoId String
+  vagaId String
   estado Estado @relation(fields:[estadoId], references:[Id])
   especialidade Especialidade @relation(fields:[especialidadeId], references:[Id])
   paciente Paciente @relation(fields:[pacienteId], references:[Id])
+  medico Medico @relation(fields:[medicoId], references:[Id])
+  vaga Vaga @relation(fields:[vagaId], references:[Id])
 
 
   createdAt DateTime @default(now())
@@ -101,6 +106,7 @@ model Estado{
   estado String
   consulta Consulta[]
   medico Medico[]
+  vaga Vaga[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -113,7 +119,10 @@ model Vaga{
   data DateTime
   hora DateTime
   medicoId String
+  estadoId String
+  consulta Consulta[]
   medico Medico @relation(fields:[medicoId], references:[Id])
+  estado Estado @relation(fields:[estadoId], references:[Id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

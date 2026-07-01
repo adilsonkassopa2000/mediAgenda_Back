@@ -1,6 +1,8 @@
 export type medico = {
     nome: string,
     escola: string,
+    CRM: number,
+    phone: number,	
     anoExperiencia: string,
     especialidadeId:string,
     estadoId:string,
@@ -13,6 +15,8 @@ export type medicoSave = {
     Id:string,
     nome: string,
     escola: string,
+    CRM: number,
+    phone:number,
     anoExperiencia: string,
     especialidadeId:string
     estadoId:string,

@@ -11,9 +11,18 @@ export class VagaService{
     
             const vaga = (await this.ivagaRepository.get()).
             find(item => item.medicoId.trim() === data.medicoId.trim())
-    
-            if(data.data === vaga?.data && data.hora === vaga.hora)// verificando se já existe uma vaga na mesma data e na mesma hora para o medico
-                throw new Error('Já existe uma vaga para esta data e hora')
+	
+	   // Extrai apenas "2026-06-13" e "23:00:00" de cada variável
+		const apenasDataNova = data.data.substring(0, 10);
+		const apenasHoraNova = data.hora.substring(11, 19);
+
+		const apenasDataExistente = vaga.data.toISOString().substring(0, 10);
+		const apenasHoraExistente = vaga.hora.toISOString().substring(11, 19);
+
+		// Compara apenas o que interessa
+		if (apenasDataNova === apenasDataExistente && apenasHoraNova === apenasHoraExistente) {
+		    throw new Error('Já existe uma vaga para esta data e hora');
+		}
     
             return await this.ivagaRepository.create(data)
     }

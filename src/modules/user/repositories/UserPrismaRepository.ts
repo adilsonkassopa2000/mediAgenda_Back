@@ -1,10 +1,20 @@
 import { prismaClient } from "../../../database/client.js";
-import { IUserRepository, save } from "./IUserRepository.js";
+import { CData, IUserRepository, save } from "./IUserRepository.js";
 
 
 
 
 export class UserPrismaRepository implements IUserRepository{
+    async update(id: string, data: CData): Promise<save> {
+       return await prismaClient.user.update({
+        where:{
+            Id:id
+        },
+        data:{
+            ...data
+        }
+       })
+    }
     async creata(email:string,senha:string):Promise<save>{
         return await prismaClient.user.create({
             data:{

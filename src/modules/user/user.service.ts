@@ -1,6 +1,6 @@
 import { log } from "console";
 import { HashBcrypt } from "../../utils/hash.js";
-import { IUserRepository } from "./repositories/IUserRepository.js";
+import { CData, IUserRepository } from "./repositories/IUserRepository.js";
 
 const hashBcrypt = new HashBcrypt();
 
@@ -53,5 +53,28 @@ export class UserService{
             throw new Error('Senha incorreta')
 
         return user
+    }
+    async updatea(id:string,data:CData){
+        if(!id || !data)
+            throw new Error(`${!id?'o id':'a senha'}  não foi passado`)
+
+        const user = (await this.iuserRepository.get()).find(item => item.Id === id)
+
+        if(!user)
+            throw new Error("este usuario não existe")
+
+	
+        if(data?.senha){
+            const senhaBd = await hashBcrypt.comparePassword(data.senha,user.senha)
+
+            if(senhaBd)
+                throw new Error("introdusa uma nova senha")	
+        }
+        
+
+	    data.senha = await hashBcrypt.hashPassword(data.senha)
+
+        return await this.iuserRepository.update(id,data)
+
     }
 }

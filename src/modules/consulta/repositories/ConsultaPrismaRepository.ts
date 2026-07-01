@@ -7,7 +7,6 @@ import { consulta, consultaSave, IConsultaRepository } from "./IConsultaReposito
 
 export class  ConsultaPrismaRepository implements IConsultaRepository{
     async upddte(id: string, data: consulta): Promise<consultaSave> {
-	console.log('prisma:',data)
         return await prismaClient.consulta.update({
             where:{
                 Id:id

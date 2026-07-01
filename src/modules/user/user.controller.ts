@@ -35,10 +35,23 @@ export class  UserController{
     async login(request:Request,response:Response){
         try{
             const {email,senha} = request.body
-            console.log('email:',email)
-            console.log('senha:',senha)
+            
 
             return response.status(200).json(await userFactory.factory().login(email,senha))
+
+        }catch(err:any){
+            response.status(400).json({
+                message:err.message
+            })
+        }
+    }
+
+    async update(request:Request,response:Response){
+        try{
+            const {id,data} = request.body
+            
+
+            return response.status(200).json(await userFactory.factory().updatea(id,data))
 
         }catch(err:any){
             response.status(400).json({
