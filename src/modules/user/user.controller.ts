@@ -9,8 +9,7 @@ export class  UserController{
     async create(request:Request,response:Response){
         try{
             const {email,senha} = request.body
-            console.log("email:",email)
-	    console.log("senha",senha)
+            
             return  response.status(200).json(await userFactory.factory().execute(email,senha))
 
         }catch(err:any){

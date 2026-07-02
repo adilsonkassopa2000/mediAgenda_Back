@@ -14,10 +14,9 @@ export class MedicoController{
 		phone,
                 especialidadeId,
                 estadoId,
-                userId,
-                createdAt,
-                updatedAt
+                userId
             } = request.body
+
 
             return response.status(200).json(
                 await medicoFactory.factory().execute({
@@ -28,9 +27,7 @@ export class MedicoController{
 		    phone,
                     especialidadeId,
                     estadoId,
-                    userId,
-                    createdAt,
-                    updatedAt
+                    userId
                 })
             )
 

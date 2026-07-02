@@ -5,6 +5,7 @@ import { IMedicoRepository, medico, medicoSave } from "./IMedicoRepository.js";
 
 export class MedicoPrismaRepository implements IMedicoRepository{
     async create(data: medico): Promise<medicoSave> {
+	
         return await prismaClient.medico.create({
             data:data
         })

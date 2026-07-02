@@ -6,9 +6,7 @@ export type medico = {
     anoExperiencia: string,
     especialidadeId:string,
     estadoId:string,
-    userId:string,
-    createdAt:Date,
-    updatedAt:Date
+    userId:string
 }
 
 export type medicoSave = {

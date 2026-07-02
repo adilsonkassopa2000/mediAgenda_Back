@@ -5,6 +5,8 @@ import { IMedicoRepository, medico } from "./repositories/IMedicoRepository.js";
 export class MedicoService{
     constructor(private imedicoRepository: IMedicoRepository){}
     async execute(data:medico){
+
+
         if(!data) //verificar se foram passados os dados
             throw new Error("dados não passados")
 
