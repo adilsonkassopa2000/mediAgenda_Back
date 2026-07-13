@@ -10,7 +10,7 @@ export class VagaController{
                 data,
                 hora,
                 medicoId,
-		estadoId
+		        estadoId
             } = request.body
 
             return response.status(200).json(
@@ -18,7 +18,7 @@ export class VagaController{
                     data,
                     hora,
                     medicoId,
-		    estadoId
+		            estadoId
                 })
             )
 

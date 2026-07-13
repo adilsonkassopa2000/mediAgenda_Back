@@ -13,11 +13,11 @@ export class VagaService{
             find(item => item.medicoId.trim() === data.medicoId.trim())
 	
 	   // Extrai apenas "2026-06-13" e "23:00:00" de cada variável
-		const apenasDataNova = data.data.substring(0, 10);
-		const apenasHoraNova = data.hora.substring(11, 19);
+		const apenasDataNova = data.data.toISOString().substring(0, 10);
+		const apenasHoraNova = data.hora.toISOString().substring(11, 19);
 
-		const apenasDataExistente = vaga.data.toISOString().substring(0, 10);
-		const apenasHoraExistente = vaga.hora.toISOString().substring(11, 19);
+		const apenasDataExistente = vaga?.data.toISOString().substring(0, 10);
+		const apenasHoraExistente = vaga?.hora.toISOString().substring(11, 19);
 
 		// Compara apenas o que interessa
 		if (apenasDataNova === apenasDataExistente && apenasHoraNova === apenasHoraExistente) {

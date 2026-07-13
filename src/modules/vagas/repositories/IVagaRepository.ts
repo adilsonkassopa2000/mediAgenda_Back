@@ -13,6 +13,7 @@ export type vaga = {
     data: Date
     hora: Date
     medicoId: string
+    estadoId: string
 }
 
 
