@@ -8,6 +8,7 @@ import { pacienteRota } from "./modules/paciente/routes.js";
 import { especialidadeRota } from "./modules/especialidade/routes.js";
 import { estadoRota } from "./modules/estado/routes.js";
 import { vagaRota } from "./modules/vagas/routes.js";
+import { createAdmin } from "./database/client.js";
 
 dotenv.config();
 
@@ -51,6 +52,6 @@ app.use('/consulta',consultaRota)
 app.use('/estado',estadoRota)
 app.use('/vaga',vagaRota)
 
-
+await createAdmin();
 
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
