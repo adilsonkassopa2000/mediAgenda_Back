@@ -16,10 +16,10 @@ const PORT = process.env.PORT || 3001;
 const corsOption = {
     origin: [
         "http://localhost:5500",
-	"http://127.0.0.1:5500",
+	    "http://127.0.0.1:5500",
         "http://localhost:5173",
-	"http://127.0.0.1:5173",
-        "https://teu-frontend.vercel.app"
+	    "http://127.0.0.1:5173",
+        "https://medi-agenda-c9ft-ecru.vercel.app"
     ],
     methods:[
         "GET",
