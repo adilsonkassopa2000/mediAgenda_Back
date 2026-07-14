@@ -10,8 +10,9 @@ export class VagaController{
                 data,
                 hora,
                 medicoId,
-		        estadoId
+	        estadoId
             } = request.body
+		
 
             return response.status(200).json(
                 await vagaFactory.factory().execute({
